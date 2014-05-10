@@ -1,0 +1,9 @@
+# Defaults for BackBox Scripts
+# sourced by /usr/bin/*
+
+# If enabled, display a warning message if some tools need the full
+# absolute path when specifying a file.
+ENABLED=1
+
+# Time to wait for tool start, in seconds
+TIMEOUT=3

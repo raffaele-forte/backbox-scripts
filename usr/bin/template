@@ -1,0 +1,31 @@
+#!/bin/sh
+
+TOOL='name'
+DIR='/opt'
+CMD='./tool.ext'
+
+# Include defaults if available
+if [ -f /etc/default/backbox-scripts ];then
+  . /etc/default/backbox-scripts
+fi
+
+# Make sure that only root can run this script
+if [ $(id -u) -ne 0 ]; then
+  echo
+  echo "[!] This script must run as root" >&2
+  echo
+  exit 1
+fi
+
+# Print banner if available
+if [ "$ENABLED" = "1" ];then
+  echo
+  echo "[!] Warning: This tool is located in $DIR/$TOOL"
+  echo "[i] Remember to give the full absolute path when specifying a file"
+  echo
+  sleep $TIMEOUT
+fi
+
+# Execute commands
+cd $DIR/$TOOL
+exec $CMD "$@"
